@@ -1,10 +1,22 @@
 const http = require('http');
 const port = 8000;
+//for reading writing files(module- fs)
+const fs = require('fs');
 
 function requestHandler(req, res){
     console.log(req.url);
+    res.writeHead(200, {'Content-Type': 'text/html'}); //For writing in Response headers
 
-    res.end('Gotcha');
+    fs.readFile('./index.html', function(err, data){
+        if(err){
+            console.log('error', err);
+            return res.end('<h1 style="color: orange;">Error!! Do Not Panic </h1>')
+        }
+        
+        return res.end(data); 
+    });
+
+    //res.end('<h1 style="color: red; border: 1px solid black;">Gotcha!</h1>');
 }
 
 const server = http.createServer(requestHandler);
