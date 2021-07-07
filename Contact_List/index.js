@@ -8,9 +8,27 @@ const app = express();
 
 //setting up template engine
 app.set('view engine', 'ejs');
-
 //store views/templates
 app.set('views', path.join(__dirname, 'views'));
+
+
+//Create Contacts List
+var contactsList = [
+    {
+        name: "Piyush",
+        phone: "7275740356"
+    },
+    {
+        name: "Arpan",
+        phone: "1111111111"
+    },
+    {
+        name: "Tony Stark",
+        phone: "0123456789"
+    }
+];
+
+
 
 //controller
 app.get('/', function (req, res) {
@@ -19,13 +37,14 @@ app.get('/', function (req, res) {
     res.send('<h1>Cool, it is running! or is it?</h1>');*/
 
     return res.render('home', {
-        title: 'Contacts List'
-    });
+        title: 'Contacts List',
+        contact_list: contactsList
+    }); 
 });
 
 app.get('/practice', function (req, res) {
     return res.render('practice', {
-        title: 'Let us play with ejs'
+        title: 'Let us play with ejs' //context is being passes to views 
     });
 });
 

@@ -9,7 +9,7 @@ function requestHandler(req, res){
 
     let filePath;
 
-    switch(req.url){
+    switch(req.url){        
         case '/':
             filePath = './index.html'
             break;
