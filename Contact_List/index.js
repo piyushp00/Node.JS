@@ -19,14 +19,22 @@ var contactsList = [
         phone: "7275740356"
     },
     {
-        name: "Arpan",
+        name: "Arpan ",
         phone: "1111111111"
     },
     {
         name: "Tony Stark",
         phone: "0123456789"
+    },
+    {
+        name: "Darth Vader",
+        phone: "9876543210"
+    },
+    {
+        name: "Luke Skywalker",
+        phone: "9999999999"
     }
-];
+]; 
 
 
 
@@ -46,6 +54,10 @@ app.get('/practice', function (req, res) {
     return res.render('practice', {
         title: 'Let us play with ejs' //context is being passes to views 
     });
+});
+
+app.post('/create-contact', function(req, res){
+    //return res.redirect('/practice');
 });
 
 app.listen(port, function(err){
