@@ -12,6 +12,34 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 
+
+//parser(middleware)
+app.use(express.urlencoded());
+app.use(express.static('assets'))
+
+/*
+//our own middleware
+//middleware1
+app.use(function(req, res, next) {
+    //console.log('middleware 1 called');
+    req.myName = "Piyush"
+    next();
+});
+
+//middleware2
+app.use(function(req, res, next) {
+    //console.log('middleware 2 called');
+    console.log('my name from mw 2', req.myName)
+    next();
+});
+*/
+
+
+
+
+
+
+
 //Create Contacts List
 var contactsList = [
     {
@@ -57,7 +85,17 @@ app.get('/practice', function (req, res) {
 });
 
 app.post('/create-contact', function(req, res){
-    //return res.redirect('/practice');
+    console.log(req.body);
+    /*contactsList.push({
+        name: req.body.name,
+        phone: req.body.phone
+    });*/
+
+    //or we can write
+    contactsList.push(req.body);
+    //return res.redirect('/');
+    //for coming to same page we can also write as below
+    return res.redirect('back')
 });
 
 app.listen(port, function(err){
