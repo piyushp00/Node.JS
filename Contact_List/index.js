@@ -65,8 +65,7 @@ var contactsList = [
 ]; 
 
 
-
-//controller
+//Controller-1 (rendering home page)
 app.get('/', function (req, res) {
     //console.log(req);
     /*console.log(__dirname); //it displays the directory from where server is started.
@@ -78,12 +77,16 @@ app.get('/', function (req, res) {
     }); 
 });
 
+
+//Controller-2 (rendering practice page)
 app.get('/practice', function (req, res) {
     return res.render('practice', {
         title: 'Let us play with ejs' //context is being passes to views 
     });
 });
 
+
+//Controller-3 (create contact)
 app.post('/create-contact', function(req, res){
     console.log(req.body);
     /*contactsList.push({
@@ -97,6 +100,27 @@ app.post('/create-contact', function(req, res){
     //for coming to same page we can also write as below
     return res.redirect('back')
 });
+
+
+//Controller-4 (delete contact)
+app.get('/delete-contact/', function(req, res){
+    //with params
+    //let phone = req.params.phone;
+    //with query params
+    console.log(req.query);
+    //get the query from the url
+    let phone  = req.query.phone;
+    
+    let contactIndex = contactsList.findIndex(contact => contact.phone == phone)
+    
+    if(contactIndex != -1){
+        contactsList.splice(contactIndex, 1);
+    }
+
+    return res.redirect('back');
+
+});
+
 
 app.listen(port, function(err){
     if(err){
