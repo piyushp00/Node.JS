@@ -1,104 +1,106 @@
-body{
+body {
     margin: 0;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background: white;
 }
 
-#page-heading{
+#page-heading {
     text-align: center;
     margin-top: 25px;
     color: #0d6efd;
-    font-size :3rem;
+    font-size: 3rem;
     font-weight: bold;
 }
 
-#container{
-    display:flex;
+#container {
+    display: flex;
 }
 
-form{
-    display:inline-block;
+form {
+    display: inline-block;
     position: relative;
     max-width: 50%;
-    width:50%;
+    width: 50%;
     padding: 5px;
     padding-top: 150px;
 }
 
-form input{
+form input {
     display: block;
     max-width: 65%;
-    margin-top:50px;
+    margin-top: 50px;
     margin-left: 18%;
 }
 
-form button{
-    margin-top:50px;
+form button {
+    margin-top: 50px;
     margin-left: 40%;
 }
 
-#contact-container{
-    display:inline-block;
+#contact-container {
+    display: inline-block;
     position: relative;
-   max-width: 50%;
-    width:50%;
+    max-width: 50%;
+    width: 50%;
     padding: 10px;
-    height:80vh;
+    height: 80vh;
     overflow: scroll;
 }
 
-#contact-container::-webkit-scrollbar{
+#contact-container::-webkit-scrollbar {
     display: none;
 }
 
-ul{
-    margin:20px; 
+ul {
+    margin: 20px;
 }
 
-ul li{
-    border:2px solid rgb(235, 226, 226);
+ul li {
+    border: 2px solid rgb(235, 226, 226);
     display: flex;
     justify-content: space-between;
     border-bottom: 0px;
-    height:55px;
+    height: 55px;
     font-size: 1.2rem;
-    padding:10px;
+    padding: 10px;
     list-style: none;
     border-radius: 5px;
     transition: 0.4s;
     margin: 0;
 }
 
-li:nth-child(2n){
+li:nth-child(2n) {
     background-color: #0d6efd;
 }
 
-li:nth-child(2n + 1){
+li:nth-child(2n + 1) {
     background-color: white;
 }
 
-li:hover{
+li:hover {
     background-color: rgb(121, 121, 122);
-    border-color:rgb(121, 121, 122);
+    border-color: rgb(121, 121, 122);
     cursor: pointer;
 }
 
-#contact{
-    display:flex;
-    justify-content:space-between;
-   width: 90%;
+#contact {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
 }
 
-ul li p{
-    display:inline-block;
+ul li p {
+    display: inline-block;
 }
 
-#phone{
-    position: relative;
-    margin-right: 0px;
-}
 
-.delete-button a i{
+
+.delete-button a i {
     color: red;
+    /* display:none; */
+    visibility: hidden;
 }
 
+li:hover>.delete-button>a>i {
+    visibility: visible;
+}
