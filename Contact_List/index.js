@@ -4,6 +4,10 @@ const express = require("express");
 const path = require("path");
 const port = 8000;
 
+//for setting up mongoose we need config
+const db = require('./config/mongoose');
+
+//fire express
 const app = express();
 
 //setting up template engine
