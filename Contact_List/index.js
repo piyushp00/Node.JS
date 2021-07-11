@@ -1,11 +1,14 @@
-//code order -> 1.ibraries - 2.different files and properties- 3.middleware
+//code order -> 1.ibraries - 2.middleware- 3. different files and properties
+
 const express = require("express");
 //library for storing views(comes in built)
 const path = require("path");
 const port = 8000;
 
 //for setting up mongoose we need config
-const db = require('./config/mongoose');
+const db = require("./config/mongoose");
+//reqire schema
+const Contact = require("./models/contact");
 
 //fire express
 const app = express();
@@ -68,7 +71,7 @@ app.get("/", function (req, res) {
 
   return res.render("home", {
     title: "Contacts List",
-    contact_list: contactsList,
+    contact_list: contactsList
   });
 });
 
@@ -80,18 +83,45 @@ app.get("/practice", function (req, res) {
 });
 
 //Controller-3 (create contact)
+/*
 app.post("/create-contact", function (req, res) {
   console.log(req.body);
-  /*contactsList.push({
-        name: req.body.name,
-        phone: req.body.phone
-    });*/
+  // contactsList.push({
+  //       name: req.body.name,
+  //       phone: req.body.phone
+  //   });
 
   //or we can write
   contactsList.push(req.body);
   //return res.redirect('/');
   //for coming to same page we can also write as below
   return res.redirect("back");
+});
+*/
+
+//TODO create contact with db
+
+app.post("/create-contact", function (req, res) {
+  console.log(req.body);
+
+  //! we dont't need contactList now
+  //contactsList.push(req.body);
+
+  //we need to push into db or collection for which schema has been generated
+  Contact.create(
+    {
+      name: req.body.name,
+      phone: req.body.phone,
+    },
+    function (err, newContact) {
+      if (err) {
+        console.log("error in creating a contact!");
+        return;
+      }
+
+      console.log("******", newContact);
+      return res.redirect("back");
+    });
 });
 
 //Controller-4 (delete contact)
