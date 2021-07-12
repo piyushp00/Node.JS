@@ -69,10 +69,27 @@ app.get("/", function (req, res) {
   /*console.log(__dirname); //it displays the directory from where server is started.
     res.send('<h1>Cool, it is running! or is it?</h1>');*/
 
-  return res.render("home", {
-    title: "Contacts List",
-    contact_list: contactsList
+
+  //? Using Local Contact List
+  //return res.render("home", {
+  //title: "Contacts List",
+  //contact_list: contactsList
+  //});
+
+  //? using db contacts
+  Contact.find({}, function (err, contacts) {
+    if (err) {
+      console.log("Error in fetching contacts from db");
+      return;
+    }
+
+    return res.render("home", {
+      title: "Contacts List",
+      contact_list: contacts
+    });
   });
+
+  
 });
 
 //Controller-2 (rendering practice page)
@@ -99,8 +116,7 @@ app.post("/create-contact", function (req, res) {
 });
 */
 
-//TODO create contact with db
-
+//TODO-> create contact with db
 app.post("/create-contact", function (req, res) {
   console.log(req.body);
 
@@ -109,6 +125,7 @@ app.post("/create-contact", function (req, res) {
 
   //we need to push into db or collection for which schema has been generated
   Contact.create(
+    //req.body
     {
       name: req.body.name,
       phone: req.body.phone,
@@ -119,14 +136,16 @@ app.post("/create-contact", function (req, res) {
         return;
       }
 
-      console.log("******", newContact);
+      console.log("***", newContact);
       return res.redirect("back");
-    });
+    }
+  );
 });
 
 //Controller-4 (delete contact)
 app.get("/delete-contact/", function (req, res) {
-  //with params
+  //* with local contact list
+  /*//with params
   //let phone = req.params.phone;
   //with query params
   console.log(req.query);
@@ -141,7 +160,22 @@ app.get("/delete-contact/", function (req, res) {
     contactsList.splice(contactIndex, 1);
   }
 
-  return res.redirect("back");
+  return res.redirect("back");*/
+
+  //* delete using db
+
+  //? get the id from query in the url
+  let id = req.query.id;
+
+  //? find the contact in the db using id and delete
+  Contact.findByIdAndDelete(id, function (err) {
+    if (err) {
+      console.log("error in deleting object from database");
+      return;
+    }
+
+    return res.redirect("back");
+  });
 });
 
 app.listen(port, function (err) {
