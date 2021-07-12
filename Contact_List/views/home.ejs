@@ -41,8 +41,10 @@
                     <div class="delete-button">
                         <!--with params-->
                         <!-- <a href="/delete-contact/<%= i.phone %>"><i class="far fa-trash-alt"></i></a> -->
-                        <!--with query params-->
-                        <a href="/delete-contact/?phone=<%= i.phone %>"><i class="far fa-trash-alt"></i></a>
+                        <!--with query params(local contact list)-->
+                        <!-- <a href="/delete-contact/?phone=<%= i.phone %>"><i class="far fa-trash-alt"></i></a> -->
+                        <!-- with db contacts -->
+                        <a href="/delete-contact/?id=<%= i._id %>"><i class="far fa-trash-alt"></i></a>
                         <!--we can also add multiple query params with & sign-->
                         <!-- <a href="/delete-contact/?phone=<%= i.phone %>&name=<%= i.name %>"><i class="far fa-trash-alt"></i></a> -->
                     </div>
